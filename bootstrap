@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+# using ideas from https://github.com/punchagan/ansible-system-setup/blob/main/bootstrap to set up mine
+
+set -euo pipefail
+
+URL="https://github.com/dabrown645/ansible-master.git"
+
+# Install Ansible (ansible-pull and Git
+if $(type -P apt > /dev/null) ; then
+    sudo apt update
+    sudo apt upgrade -y
+    (which ansible-pull >/dev/null \
+        && which python3 >/dev/null \
+        && which git >/dev/null) || (sudo apt install -y git python python-psutil ansible moleecule)
+elif $(type -P pacman > /dev/null) ; then
+    sudo pacman -Syu --noconfirm
+    (which ansible-pull >/dev/null \
+         && which git >/dev/null) || (sudo pacman --noconfirm -Syu ansible git sshpass)
+elif $(type -P zypper >/dev/null); then
+    (which ansible-pull && which git) || (sudo zypper install -y ansible git)
+else
+    echo "OS type not supported"
+fi
+
+# Create ansible log directory
+# NOTE: Ensure it i the same as in the log path in Ansible.cfg
+mkdir -p /var/log
+
+if  [[ ${#} -ge 1 ]] ; then
+    branch=${1:-main}
+    shift
+fi
+
+ansible-pull --url ${URL} --ask-become-pass --ask-pass --checkout ${branch} ${@}
+
+
+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
+
+
+https://github.com/dabrown645/tstanspull.git
+
+
+https://github.com/dabrown645/ansible-master.git
+
+
+sudo /usr/bin/bash -c 'ansible-pull -U https://github.com/dabrown645/ansible-master.git -K -k -i "$(uname -n)," --diff'
+
+sudo /usr/bin/bash -c 'ansible-pull -U https://github.com/dabrown645/tstanspull.git -K -k -i "$(uname -n)," --diff'
+
+
+ansible-playbook playbook.yml --limit $(uname -n) -K -k

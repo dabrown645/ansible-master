@@ -1,0 +1,25 @@
+- hosts: mygroup
+  tasks:
+    - debug:
+        msg: "I'm in group 'mygroup'"
+
+- hosts: onlyfoo
+  tasks:
+    - debug:
+        msg: "I'm in group 'onlyfoo'"
+
+- hosts: onlybar
+  tasks:
+    - debug:
+        msg: "I'm in group 'onlybar'"
+
+- hosts: onlygaruda
+  tasks:
+    - debug:
+        msg: "I'm in group 'onlygaruda'"
+
+#- name: configure ansible-pull
+#  hosts: all
+#  roles:
+#    - role: ansible-pull
+#      ansible_pull_url: https://github.com/dabown645/ansible-master

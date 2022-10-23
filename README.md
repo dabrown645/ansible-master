@@ -1,21 +1,32 @@
-# ansible-pull-example
+# ansible-master
 
-This repo serves as an example of ansible's pull mode.
+This is my ansible configuration for managing my laptop configurations. It is
+designed based using ansible-pull. I first discovered this method after watching
+Jay LaCroix and his youtube tutorial
+[Using Ansible to configure your laptops & desktops](https://www.youtube.com/results?search_query=LinuxTV+personal_ansible_configure)
+I setup a repo based on example provided by Jay
+([personal_ansible_desktop_configs](https://github.com/LearnLinuxTV/personal_ansible_desktop_configs)).
+While getting it set up I ran into some issues especially during development
+having to commit with each change to be able to test with ansible-pull.
 
-I found pull mode somewhat under-documented, so this repo is
-intended to provide a practical example for people wishing to get
-started with ansible-pull. In particular, it collects a bit of
-utility code that should enable some basic workflows.
+I did some more research and found Konrad Tegtmeier's
+[ansible-pull-example](https://github.com/jktr/ansible-pull-example)
+template to setup an environment where you can develop using ansible-playbook to
+develop without having to commit until you have things working more or less
+before having to do a commit and then using ansible-pull.
 
-Running ansible in pull mode makes a different trade-off than the
-usual centralized ansible workflow. The main benefits are the
-implicit scaling to a large number of nodes, a simple
-repository-oriented workflow, and avoiding the need for
-awx/tower. Drawbacks are mainly that the pull workflow is
-somewhat obscure, results in eventually consistent
-infrastructure, and has some gotchas detailed below.
+After looking at Eric Anderson's
+[ansible-collection-system](https://github.com/ericsysmin/ansible-collection-system)
+and Megabyte Labs [gas-Station](https://gitlab.com/megabyte-labs/gas-station)
+I liked how they handled different OS distributions and will use it in my own
+repo because I do do a bit of distro hoping and it is an cleaner method to handle
+it.
 
-## invoking ansible
+*NOTE: Credit where credit is due the following two sections describing how to
+invoke and explaination of how it works are copied from Konrad Tegtmeier's
+ansible-pull-example.*
+
+## invoking ansible 
 
 You'll want to invoke ansible like this if you use this ansible-pull setup:
 
