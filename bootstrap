@@ -26,26 +26,9 @@ fi
 # NOTE: Ensure it i the same as in the log path in Ansible.cfg
 mkdir -p /var/log
 
+branch=${1:-main}
 if  [[ ${#} -ge 1 ]] ; then
-    branch=${1:-main}
     shift
 fi
 
-ansible-pull --url ${URL} --ask-become-pass --ask-pass --checkout ${branch} ${@}
-
-
-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
-
-
-https://github.com/dabrown645/tstanspull.git
-
-
-https://github.com/dabrown645/ansible-master.git
-
-
-sudo /usr/bin/bash -c 'ansible-pull -U https://github.com/dabrown645/ansible-master.git -K -k -i "$(uname -n)," --diff'
-
-sudo /usr/bin/bash -c 'ansible-pull -U https://github.com/dabrown645/tstanspull.git -K -k -i "$(uname -n)," --diff'
-
-
-ansible-playbook playbook.yml --limit $(uname -n) -K -k
+ansible-pull -U https://github.com/dabrown645/ansible-master.git -K -k -i "$(uname -n)," --diff --checkout ${branch} ${@}
