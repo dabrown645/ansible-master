@@ -1,0 +1,4 @@
+---
+warn_list:
+  - package-latest
+  - risky-file-permissions

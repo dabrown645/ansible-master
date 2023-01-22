@@ -1,0 +1,24 @@
+---
+- name: Debug
+  ansible.builtin.debug:
+    msg: "I am debian upgrade"
+
+- name: Update APT Cache.
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+
+- name: Upgrade system (apt)
+  ansible.builtin.apt:
+    update_cache: true
+    upgrade: safe
+    state: latest
+
+- name: Cleanup (apt) autoremove
+  ansible.builtin.apt:
+    autoremove: true
+    purge: true
+
+- name: Cleanup (apt) autoclean
+  ansible.builtin.apt:
+    autoclean: true

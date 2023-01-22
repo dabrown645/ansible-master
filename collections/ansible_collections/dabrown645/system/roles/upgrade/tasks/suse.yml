@@ -1,0 +1,10 @@
+---
+- name: Debug
+  ansible.builtin.debug:
+    msg: "I am suse upgrade"
+
+- name: Upgrade system (zypper)
+  ansible.builtin.zypper:
+    name: "*"
+    state: latest
+    update_cache: true

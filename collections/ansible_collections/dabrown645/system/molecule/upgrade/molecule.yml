@@ -1,0 +1,43 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
+platforms:
+  - name: instance
+    image: "dabrown645/ansible-${MOLECULE_DISTRO:-ubuntu2204}"
+    command: ${MOLECULE_COMMAND:-""}
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    privileged: true
+    cgroupns_mode: host
+    pre_build_image: true
+provisioner:
+  name: ansible
+  config_options:
+    defaults:
+      remote_tmp: /tmp
+  log: true
+  playbooks:
+    converge: ${MOLECULE_PLAYBOOK:-converge.yml}
+ # verifier:
+ #  name: ansible
+ #    scenario:
+ #      test_sequence:
+ #        - dependency
+ #        - lint
+ #        - cleanup
+ #        - destroy
+ #        - syntax
+ #        - create
+ #        - prepare
+ #        - converge
+ #        # - idempotence
+ #        #- side-effect
+ #        - verify
+ #        - cleanup
+ #        - destroy

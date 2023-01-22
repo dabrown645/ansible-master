@@ -1,0 +1,121 @@
+[34mINFO    [0m upgrade scenario test matrix: dependency, lint, cleanup, destroy, syntax, create, prepare, converge, idempotence, side_effect, verify, cleanup, destroy
+[34mINFO    [0m Performing prerun with [33mrole_name_check[0m=[1;36m0[0m[33m...[0m
+[34mINFO    [0m Set [33mANSIBLE_LIBRARY[0m=[35m/home/dabrown/.cache/ansible-compat/bbc5e6/[0m[95mmodules[0m:[35m/home/dabrown/.ansible/plugins/[0m[95mmodules[0m:[35m/usr/share/ansible/plugins/[0m[95mmodules[0m
+[34mINFO    [0m Set [33mANSIBLE_COLLECTIONS_PATH[0m=[35m/home/dabrown/.cache/ansible-compat/bbc5e6/[0m[95mcollections[0m:[35m/storage/dabrown/Public/ansible-master/collections/ansible_collections/dabrown645/system/collections/[0m[95mansible_collections[0m
+[34mINFO    [0m Set [33mANSIBLE_ROLES_PATH[0m=[35m/home/dabrown/.cache/ansible-compat/bbc5e6/[0m[95mroles[0m:roles:[35m/home/dabrown/.ansible/[0m[95mroles[0m:[35m/usr/share/ansible/[0m[95mroles[0m:[35m/etc/ansible/[0m[95mroles[0m
+[34mINFO    [0m Running from [35m/storage/dabrown/Public/ansible-master/collections/ansible_collections/dabrown645/[0m[95msystem[0m : ansible-galaxy collection install -vvv --force -p [35m/home/dabrown/.cache/ansible-compat/bbc5e6/[0m[95mcollections[0m .
+[34mINFO    [0m [2;36mRunning [0m[2;32mupgrade[0m[2;36m > [0m[2;32mdependency[0m
+[31mWARNING [0m Skipping, missing the requirements file.
+[31mWARNING [0m Skipping, missing the requirements file.
+[34mINFO    [0m [2;36mRunning [0m[2;32mupgrade[0m[2;36m > [0m[2;32mlint[0m
+
+[32mPassed[0m with [1mproduction[0m profile: [1;36m0[0m [1;35mfailure[0m[1m([0ms[1m)[0m, [1;36m0[0m [1;35mwarning[0m[1m([0ms[1m)[0m on [1;36m28[0m files.
+[34mINFO    [0m [2;36mRunning [0m[2;32mupgrade[0m[2;36m > [0m[2;32mcleanup[0m
+[31mWARNING [0m Skipping, cleanup playbook not configured.
+[34mINFO    [0m [2;36mRunning [0m[2;32mupgrade[0m[2;36m > [0m[2;32mdestroy[0m
+[34mINFO    [0m Sanity checks: [32m'docker'[0m
+
+PLAY [Destroy] *****************************************************************
+
+TASK [Set async_dir for HOME env] **********************************************
+[32mok: [localhost][0m
+
+TASK [Destroy molecule instance(s)] ********************************************
+[33mchanged: [localhost] => (item=instance)[0m
+
+TASK [Wait for instance(s) deletion to complete] *******************************
+[1;30mFAILED - RETRYING: [localhost]: Wait for instance(s) deletion to complete (300 retries left).[0m
+[32mok: [localhost] => (item=instance)[0m
+
+TASK [Delete docker networks(s)] ***********************************************
+[36mskipping: [localhost][0m
+
+PLAY RECAP *********************************************************************
+[33mlocalhost[0m                  : [32mok=3   [0m [33mchanged=1   [0m unreachable=0    failed=0    [36mskipped=1   [0m rescued=0    ignored=0
+
+[34mINFO    [0m [2;36mRunning [0m[2;32mupgrade[0m[2;36m > [0m[2;32msyntax[0m
+
+playbook: /storage/dabrown/Public/ansible-master/collections/ansible_collections/dabrown645/system/molecule/upgrade/converge.yml
+[34mINFO    [0m [2;36mRunning [0m[2;32mupgrade[0m[2;36m > [0m[2;32mcreate[0m
+
+PLAY [Create] ******************************************************************
+
+TASK [Set async_dir for HOME env] **********************************************
+[32mok: [localhost][0m
+
+TASK [Log into a Docker registry] **********************************************
+[36mskipping: [localhost] => (item=None) [0m
+[36mskipping: [localhost][0m
+
+TASK [Check presence of custom Dockerfiles] ************************************
+[32mok: [localhost] => (item={'cgroupns_mode': 'host', 'command': '', 'image': 'dabrown645/ansible-ubuntu2204', 'name': 'instance', 'pre_build_image': True, 'privileged': True, 'volumes': ['/sys/fs/cgroup:/sys/fs/cgroup:ro']})[0m
+
+TASK [Create Dockerfiles from image names] *************************************
+[36mskipping: [localhost] => (item={'cgroupns_mode': 'host', 'command': '', 'image': 'dabrown645/ansible-ubuntu2204', 'name': 'instance', 'pre_build_image': True, 'privileged': True, 'volumes': ['/sys/fs/cgroup:/sys/fs/cgroup:ro']})[0m
+[36mskipping: [localhost][0m
+
+TASK [Synchronization the context] *********************************************
+[36mskipping: [localhost] => (item={'cgroupns_mode': 'host', 'command': '', 'image': 'dabrown645/ansible-ubuntu2204', 'name': 'instance', 'pre_build_image': True, 'privileged': True, 'volumes': ['/sys/fs/cgroup:/sys/fs/cgroup:ro']})[0m
+[36mskipping: [localhost][0m
+
+TASK [Discover local Docker images] ********************************************
+[32mok: [localhost] => (item={'changed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'item': {'cgroupns_mode': 'host', 'command': '', 'image': 'dabrown645/ansible-ubuntu2204', 'name': 'instance', 'pre_build_image': True, 'privileged': True, 'volumes': ['/sys/fs/cgroup:/sys/fs/cgroup:ro']}, 'ansible_loop_var': 'item', 'i': 0, 'ansible_index_var': 'i'})[0m
+
+TASK [Build an Ansible compatible image (new)] *********************************
+[36mskipping: [localhost] => (item=molecule_local/dabrown645/ansible-ubuntu2204) [0m
+[36mskipping: [localhost][0m
+
+TASK [Create docker network(s)] ************************************************
+[36mskipping: [localhost][0m
+
+TASK [Determine the CMD directives] ********************************************
+[32mok: [localhost] => (item={'cgroupns_mode': 'host', 'command': '', 'image': 'dabrown645/ansible-ubuntu2204', 'name': 'instance', 'pre_build_image': True, 'privileged': True, 'volumes': ['/sys/fs/cgroup:/sys/fs/cgroup:ro']})[0m
+
+TASK [Create molecule instance(s)] *********************************************
+[33mchanged: [localhost] => (item=instance)[0m
+
+TASK [Wait for instance(s) creation to complete] *******************************
+[1;30mFAILED - RETRYING: [localhost]: Wait for instance(s) creation to complete (300 retries left).[0m
+[33mchanged: [localhost] => (item={'failed': 0, 'started': 1, 'finished': 0, 'ansible_job_id': '813340822231.17532', 'results_file': '/home/dabrown/.ansible_async/813340822231.17532', 'changed': True, 'item': {'cgroupns_mode': 'host', 'command': '', 'image': 'dabrown645/ansible-ubuntu2204', 'name': 'instance', 'pre_build_image': True, 'privileged': True, 'volumes': ['/sys/fs/cgroup:/sys/fs/cgroup:ro']}, 'ansible_loop_var': 'item'})[0m
+
+PLAY RECAP *********************************************************************
+[33mlocalhost[0m                  : [32mok=6   [0m [33mchanged=2   [0m unreachable=0    failed=0    [36mskipped=5   [0m rescued=0    ignored=0
+
+[34mINFO    [0m [2;36mRunning [0m[2;32mupgrade[0m[2;36m > [0m[2;32mprepare[0m
+[31mWARNING [0m Skipping, prepare playbook not configured.
+[34mINFO    [0m [2;36mRunning [0m[2;32mupgrade[0m[2;36m > [0m[2;32mconverge[0m
+
+PLAY [Converge] ****************************************************************
+
+TASK [Gathering Facts] *********************************************************
+[1;31mfatal: [instance]: UNREACHABLE! => {"changed": false, "msg": "Failed to create temporary directory. In some cases, you may have been able to authenticate and did not have permissions on the target directory. Consider changing the remote tmp path in ansible.cfg to a path rooted in \"/tmp\", for more error information use -vvv. Failed command was: ( umask 77 && mkdir -p \"` echo /tmp `\"&& mkdir \"` echo /tmp/ansible-tmp-1672119041.244254-17699-253471430808839 `\" && echo ansible-tmp-1672119041.244254-17699-253471430808839=\"` echo /tmp/ansible-tmp-1672119041.244254-17699-253471430808839 `\" ), exited with result 1", "unreachable": true}[0m
+
+PLAY RECAP *********************************************************************
+[31minstance[0m                   : ok=0    changed=0    [1;31munreachable=1   [0m failed=0    skipped=0    rescued=0    ignored=0
+
+[31mWARNING [0m Retrying execution failure [1;36m4[0m of: ansible-playbook --inventory [35m/home/dabrown/.cache/molecule/system/upgrade/[0m[95minventory[0m --skip-tags molecule-notest,notest [35m/storage/dabrown/Public/ansible-master/collections/ansible_collections/dabrown645/system/molecule/upgrade/[0m[95mconverge.yml[0m
+[1;31mCRITICAL[0m Ansible return code was [1;36m4[0m, command was: [1m[[0m[32m'ansible-playbook'[0m, [32m'--inventory'[0m, [32m'/home/dabrown/.cache/molecule/system/upgrade/inventory'[0m, [32m'--skip-tags'[0m, [32m'molecule-notest,notest'[0m, [32m'/storage/dabrown/Public/ansible-master/collections/ansible_collections/dabrown645/system/molecule/upgrade/converge.yml'[0m[1m][0m
+[31mWARNING [0m An error occurred during the test sequence action: [32m'converge'[0m. Cleaning up.
+[34mINFO    [0m [2;36mRunning [0m[2;32mupgrade[0m[2;36m > [0m[2;32mcleanup[0m
+[31mWARNING [0m Skipping, cleanup playbook not configured.
+[34mINFO    [0m [2;36mRunning [0m[2;32mupgrade[0m[2;36m > [0m[2;32mdestroy[0m
+
+PLAY [Destroy] *****************************************************************
+
+TASK [Set async_dir for HOME env] **********************************************
+[32mok: [localhost][0m
+
+TASK [Destroy molecule instance(s)] ********************************************
+[33mchanged: [localhost] => (item=instance)[0m
+
+TASK [Wait for instance(s) deletion to complete] *******************************
+[1;30mFAILED - RETRYING: [localhost]: Wait for instance(s) deletion to complete (300 retries left).[0m
+[33mchanged: [localhost] => (item=instance)[0m
+
+TASK [Delete docker networks(s)] ***********************************************
+[36mskipping: [localhost][0m
+
+PLAY RECAP *********************************************************************
+[33mlocalhost[0m                  : [32mok=3   [0m [33mchanged=2   [0m unreachable=0    failed=0    [36mskipped=1   [0m rescued=0    ignored=0
+
+[34mINFO    [0m Pruning extra files from scenario ephemeral directory

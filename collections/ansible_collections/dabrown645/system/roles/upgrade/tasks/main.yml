@@ -1,0 +1,16 @@
+---
+- name: Debug info
+  ansible.builtin.debug:
+    msg:
+      - "{{ ansible_os_family | lower }}"
+      - "{{ ansible_distribution | replace(' ', '_') | lower }}"
+      - "{{ ansible_distribution_version | lower }}"
+
+- name: Update | Update existing system
+  ansible.builtin.include_tasks:
+    file: "{{ item }}"
+  with_first_found:
+    - files:
+        - "{{ ansible_os_family | lower }}_{{ ansible_distribution | replace(' ', '_') | lower }}_{{ ansible_distribution_version | lower }}.yml"
+        - "{{ ansible_os_family | lower }}_{{ ansible_distribution | replace(' ', '_') | lower }}.yml"
+        - "{{ ansible_os_family | lower }}.yml"
