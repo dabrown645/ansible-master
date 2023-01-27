@@ -1,0 +1,43 @@
+---
+# This is the default which is based on specific names are based on archlinux and used to define
+# the required variable list names and can be overridden in more specific in vars directory
+
+base_pkgs_remove:
+  - elisa
+  - nano
+  - nano-system-highlighting
+base_groups_install:
+  - base-devel
+  - fprint
+base_pkgs_install:
+  - aspell
+  - bat
+  - bottom
+  - btop
+  - btrfs-progs
+  - btrfs-assistant
+  - bzip2
+  - cups
+  - cups-filters
+  - cups-pdf
+  - cups-pk-helper
+  - dolphin-plugins
+  - exa
+  - gwenview
+  - jq
+  - pax
+  - sshpass
+  - wmctrl
+base_plasma_kde_install:
+  - plasma
+
+#chrony_pkg_state: present
+#chrony_service_state: started
+#chrony_service_enabled: true
+#Chrony_confit_server:
+#  - 0.pool.ntp.org
+#  - 1.pool.ntp.org
+#  - 3.pool.ntp.org
+#  - 4.pool.ntp.org
+#chrony_config_logdir: /var/log/chrony
+#chrony_config_extra_options: {}

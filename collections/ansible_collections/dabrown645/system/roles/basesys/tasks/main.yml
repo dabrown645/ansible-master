@@ -1,0 +1,27 @@
+---
+- name: Debug info
+  ansible.builtin.debug:
+    msg:
+      - "{{ ansible_os_family | lower }}"
+      - "{{ ansible_distribution | replace(' ', '_') | lower }}"
+      - "{{ ansible_distribution_version | lower }}"
+
+- name: Load a variable file based on OS type info
+  ansible.builtin.include_vars: "{{ lookup('ansible.builtin.first_found', params) }}"
+  vars:
+    params:
+      files:
+        - "{{ ansible_os_family | lower }}_{{ ansible_distribution | replace(' ', '_') | lower }}_{{ ansible_distribution_version | lower }}.yml"
+        - "{{ ansible_os_family | lower }}_{{ ansible_distribution | replace(' ', '_') | lower }}.yml"
+        - "{{ ansible_os_family | lower }}.yml"
+      paths:
+        - 'vars'
+
+- name: Update | Update existing system
+  ansible.builtin.include_tasks:
+    file: "{{ item }}"
+  with_first_found:
+    - files:
+      - "{{ ansible_os_family | lower }}_{{ ansible_distribution | replace(' ', '_') | lower }}_{{ ansible_distribution_version | lower }}.yml"
+      - "{{ ansible_os_family | lower }}_{{ ansible_distribution | replace(' ', '_') | lower }}.yml"
+      - "{{ ansible_os_family | lower }}.yml"
