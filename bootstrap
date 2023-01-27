@@ -17,7 +17,7 @@ elif $(type -P pacman > /dev/null) ; then
     sudo pacman -Syu --noconfirm
     (which ansible-pull >/dev/null \
          && which git >/dev/null) || (sudo pacman --noconfirm -Syu ansible git sshpass) \
-        && systemctl enable sshd
+        && systemctl enable --now sshd
 elif $(type -P zypper >/dev/null); then
     (which ansible-pull && which git) || (sudo zypper install -y ansible git sshpass)
 else
@@ -34,5 +34,6 @@ if  [[ ${#} -ge 1 ]] ; then
 fi
 
 echo "sudo mount -t 9p -o trans=virtio,version=9p2000.L,msize=104857600 Public-dabrown ~/Public" > ~/mnt.sh
+chmod +x ~/mnt.sh
 
 ansible-pull -U https://github.com/dabrown645/ansible-master.git -K -k -i "$(uname -n)," --diff --checkout ${branch} ${@}
