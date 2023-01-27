@@ -7,3 +7,4 @@
     - role: dabrown645.system.ansible_pull
       ansible_pull_url: https://github.com/dabown645/ansible-master
     - role: dabrown645.system.upgrade
+    - role: dabrown645.system.basesys
