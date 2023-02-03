@@ -4,25 +4,15 @@
   ansible.builtin.debug:
     var: base_groups_install
 
-- name: Get desktop environment
-  ansible.builtin.shell: |
-    wmctrl -m | head 1 | cut -f 2 -d " " | tr [A-Z] [a-z]
-  register: desktop_env
-
-- name: Set destop env fact
-  ansible.builtin.set_fact:
-    mydesktop_env: "{{ desktop_env }}"
-
-
 - name: Remove unwanted packages from system
-  community.general.pacman:
+  ansible.builtin.package:
     name: "{{ item }}"
     state: absent
   with_items:
     - "{{ base_pkgs_remove }}"
 
 - name: Install base groups and packages
-  community.general.pacman:
+  ansible.builtin.package:
     name: "{{ item }}"
     state: present
   with_items:
@@ -33,10 +23,5 @@
   ansible.builtin.debug:
     var: ansible_env
 
-- name: Install base plasma-kde groups packages 
-  community.general.pacman:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - "{{ base_plasma_kde_install }}"
-  when: desktop_env == "kwin"
+- name: Install desttop specific packages
+  ansible.builtin.include_tasks: "{{ desktop_env }}.yml"
