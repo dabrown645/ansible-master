@@ -2,3 +2,5 @@
 pull_groups:
   - laptop
   - onlypop
+
+desktop_env: gnome

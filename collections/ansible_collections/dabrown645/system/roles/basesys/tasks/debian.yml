@@ -1,2 +1,31 @@
 ---
 # Debian specific information
+- name: Debug info
+  ansible.builtin.debug:
+    var: base_groups_install
+
+- name: Remove unwanted packages from system
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - "{{ base_pkgs_remove }}"
+
+- name: Install base groups and packages
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ base_groups_install }}"
+    - "{{ base_pkgs_install }}"
+
+- name: Debug info when
+  ansible.builtin.debug:
+    var: ansible_env
+
+- name: Debug info desktop
+  ansible.builtin.debug:
+    var: desktop_env
+
+- name: Install desttop specific packages
+  ansible.builtin.include_tasks: "{{ desktop_env }}.yml"

@@ -1,0 +1,49 @@
+---
+# This file contains configuration information that is common across distrobutions and devicesO
+# I am using this for my home laptop, desktops, and test virtual machines so there are somethings
+# that are constant like user and some system like locale
+# These options can easily be overriden by including them in host_vars/<machine_name>.yml
+
+##
+# User Configuration
+# ==================
+##
+users:
+  - username: dabrown
+    comment: "David A Brown"
+    shell: /usr/bin/bash
+    group: dabrown
+    groups: [users, wheel]
+    append: true
+    creat_home: true
+    state: present
+    system: false
+
+    visual_studio_code_extensions:
+      - # extension 1
+      - # extension 2
+
+##
+# System Configuration
+# ====================
+# locale:
+#   list of values in /etc/locale.gen
+# timezone:
+#   /usr/share/zoneinfo
+# processor type:
+#   Option: "intel" will install microcode updates and configure the bootloader accordingly
+#   Option: "amd" will do the same for amd
+#   Option: "na" Let the installation decide what to do
+# graphic_card type:
+#   Option: "intel" will install intel graphic drivers
+#   Option: "amd" will install adm drivers
+#   Option: "nvidia" will install nvidia propritary drivers
+#   Option: "nouveau" install nouveau drivers for nvidia
+#   Option: "na" let the installation decide what to do
+##
+system:
+  locale: [en_US.UTF-8, en_US ISO-8859-1]
+  timezone: America/Los_Angeles
+  processor: na
+  graphics_card: na
+
