@@ -10,8 +10,6 @@ import collections as coll
 
 inventory_defaults = {
     'ansible_ssh_port': 22,
-    'ansible_ssh_user': 'installer',
-    'ansible_ssh_pass': 'installer',
     'ansible_become_pass': 'installer',
 }
 

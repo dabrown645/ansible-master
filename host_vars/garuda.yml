@@ -2,3 +2,6 @@
 pull_groups:
   - laptop
   - onlyguarda
+
+
+desktop_env: kde
