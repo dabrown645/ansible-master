@@ -1,6 +1,7 @@
 ---
-- name: Configure ansible-pull
+- name: Install system software
   hosts: all
+  connection: local
   become: true
 
   roles:
