@@ -1,0 +1,7 @@
+---
+- name: Install base gnome groups and packages 
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ base_gnome_install }}"
