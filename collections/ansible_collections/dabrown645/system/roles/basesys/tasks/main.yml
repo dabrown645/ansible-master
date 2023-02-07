@@ -33,3 +33,6 @@
 
 - name: Install desttop specific packages
   ansible.builtin.include_tasks: "{{ desktop_env }}.yml"
+
+- name: Configure locale
+  ansible.builtin.include_tasks: locale.yml
