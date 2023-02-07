@@ -36,3 +36,6 @@
 
 - name: Configure locale
   ansible.builtin.include_tasks: locale.yml
+
+- name: Configure ntp
+  ansible.builtin.include_tasks: ntp.yml
