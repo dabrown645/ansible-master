@@ -3,6 +3,7 @@
   hosts: all
   connection: local
   become: true
+  gather_facts: true
 
   roles:
     - role: dabrown645.system.ansible_pull
