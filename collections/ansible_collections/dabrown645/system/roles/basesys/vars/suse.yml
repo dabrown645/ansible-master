@@ -1,0 +1,58 @@
+
+---
+# This is the default which is based on specific names are based on archlinux and used to define
+# the required variable list names and can be overridden in more specific in vars directory
+
+base_pkgs_remove:
+  - elisa
+  - elisa-lang
+  - nano
+  - nano-icianga2
+  - nano-lang
+  - nano-plugin-conky
+base_pkgs_install:
+  - aspell
+  - aspell-en
+  - bat
+  - bottom
+  - btop
+  - btrfsprogs
+  - btrfsprogs-udev-rules
+  - btrfsmaintenance
+  - bzip2
+  - bzip2-doc
+  - cups
+  - cups-client
+  - cups-filters
+  - cups-config
+  - exa
+  - exa-bash-completion
+  - exa-fish-completion
+  - exa-zsh-completion
+  - gwenview5
+  - gwenview5-lang
+  - jq
+    #- pax
+  - sshpass
+  - ripgrep
+  - ripgrep-bash-completion
+  - ripgrep-fish-completion
+  - ripgrep-zsh-completion
+  - dateutils
+  - coreutils-doc
+  - coreutils-lang
+base_plasma_kde_install:
+  - patterns-kde-kde
+base_gnome_install:
+  - patterns-gnome-gnome
+
+#chrony_pkg_state: present
+#chrony_service_state: started
+#chrony_service_enabled: true
+#Chrony_confit_server:
+#  - 0.pool.ntp.org
+#  - 1.pool.ntp.org
+#  - 3.pool.ntp.org
+#  - 4.pool.ntp.org
+#chrony_config_logdir: /var/log/chrony
+#chrony_config_extra_options: {}

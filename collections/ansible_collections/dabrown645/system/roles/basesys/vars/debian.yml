@@ -1,0 +1,101 @@
+---
+# This is the default which is based on specific names are based on archlinux and used to define
+# the required variable list names and can be overridden in more specific in vars directory
+
+base_pkgs_remove:
+  - elisa
+  - nano-tiny
+  - nano
+  - nanoc
+base_pkgs_install:
+  - aspell
+  - aspell-en
+  - bat
+    #  - bottom
+  - btop
+  - btrfs-compsize
+  - btrfs-heatmap
+  - btrfs-progs
+  - btrfsmaintenance
+  - bzip2
+  - bzip2-doc
+  - cups
+  - cups-backend-bjnp
+  - cups-browsed
+  - cups-bsd
+  - cups-client
+  - cups-common
+  - cups-core-drivers
+  - cups-daemon
+  - cups-filters-core-drivers
+  - cups-filters
+  - cups-ipp-utils
+  - cups-pk-helper
+  - cups-ppdc
+  - cups-server-common
+  - cups-tea4cups
+  - cups-x2go
+  - exa
+  - gwenview
+  - jq
+  - pax
+  - sshpass
+  - ripgrep
+base_plasma_kde_install:
+  - plasma
+base_gnome_install:
+  - gnome-accessibility-themes
+  - gnome-bluetooth-3-common
+  - gnome-bluetooth-common
+  - gnome-bluetooth
+  - gnome-calculator
+  - gnome-calendar
+  - gnome-contacts
+  - gnome-control-center-data
+  - gnome-control-center-faces
+  - gnome-control-center
+  - gnome-desktop3-data
+  - gnome-disk-utility
+  - gnome-font-viewer
+  - gnome-keyring-pkcs11
+  - gnome-keyring
+  - gnome-menus
+  - gnome-online-accounts
+  - gnome-online-miners
+  - gnome-orca
+  - gnome-power-manager
+  - gnome-remote-desktop
+  - gnome-session-bin
+  - gnome-session-common
+  - gnome-settings-daemon-common
+  - gnome-settings-daemon
+  - gnome-shell-common
+  - gnome-shell-extension-appindicator
+  - gnome-shell-extension-cosmic-dock
+  - gnome-shell-extension-cosmic-workspaces
+  - gnome-shell-extension-desktop-icons-ng
+  - gnome-shell-extension-pop-x11gestures
+  - gnome-shell-extension-prefs
+  - gnome-shell-extension-system76-power
+  - gnome-shell
+  - gnome-startup-applications
+  - gnome-system-monitor
+  - gnome-terminal-data
+  - gnome-terminal
+  - gnome-themes-extra-data
+  - gnome-themes-extra
+  - gnome-themes-standard
+  - gnome-user-docs
+  - gnome-video-effects
+  - gnome-weather
+
+#chrony_pkg_state: present
+#chrony_service_state: started
+#chrony_service_enabled: true
+#Chrony_confit_server:
+#  - 0.pool.ntp.org
+#  - 1.pool.ntp.org
+#  - 3.pool.ntp.org
+#  - 4.pool.ntp.org
+#chrony_config_logdir: /var/log/chrony
+#chrony_config_extra_options: {}
