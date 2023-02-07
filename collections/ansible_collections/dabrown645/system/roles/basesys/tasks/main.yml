@@ -17,11 +17,19 @@
       paths:
         - 'vars'
 
-- name: Update | Update existing system
-  ansible.builtin.include_tasks:
-    file: "{{ item }}"
-  with_first_found:
-    - files:
-      - "{{ ansible_os_family | lower }}_{{ ansible_distribution | replace(' ', '_') | lower }}_{{ ansible_distribution_version | lower }}.yml"
-      - "{{ ansible_os_family | lower }}_{{ ansible_distribution | replace(' ', '_') | lower }}.yml"
-      - "{{ ansible_os_family | lower }}.yml"
+- name: Remove unwanted packages from system
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - "{{ base_pkgs_remove }}"
+
+- name: Install base groups and packages
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ base_pkgs_install }}"
+
+- name: Install desttop specific packages
+  ansible.builtin.include_tasks: "{{ desktop_env }}.yml"
