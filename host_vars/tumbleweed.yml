@@ -3,3 +3,6 @@
 pull_groups:
   - laptop
   - opensuse
+
+desktop_env: kde
+# desktop_env: gnome

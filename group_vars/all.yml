@@ -1,8 +1,9 @@
 ---
-# This file contains configuration information that is common across distrobutions and devicesO
-# I am using this for my home laptop, desktops, and test virtual machines so there are somethings
-# that are constant like user and some system like locale
-# These options can easily be overriden by including them in host_vars/<machine_name>.yml
+# This file contains configuration information that is common across
+# distrobutions and devicesO I am using this for my home laptop, desktops, and
+# test virtual machines so there are somethings that are constant like user and
+# some system like locale These options can easily be overriden by including
+# them in host_vars/<machine_name>.yml
 
 ##
 # User Configuration
@@ -22,6 +23,10 @@ users:
     visual_studio_code_extensions:
       - # extension 1
       - # extension 2
+  - username: ansible
+    comment: "Ansible user"
+    group: ansible
+    groups: wheel
 
 ##
 # System Configuration
@@ -31,7 +36,7 @@ users:
 # timezone:
 #   /usr/share/zoneinfo
 # processor type:
-#   Option: "intel" will install microcode updates and configure the bootloader accordingly
+#   Option: "intel" installs microcode updates/configure bootloader accordingly
 #   Option: "amd" will do the same for amd
 #   Option: "na" Let the installation decide what to do
 # graphic_card type:
@@ -42,8 +47,9 @@ users:
 #   Option: "na" let the installation decide what to do
 ##
 system:
-  locale: [en_US.UTF-8, en_US ISO-8859-1]
+  locale:
+    - en_US.UTF-8
+    - en_US ISO-8859-1]
   timezone: America/Los_Angeles
   processor: na
   graphics_card: na
-
