@@ -6,10 +6,9 @@ base_pkgs_remove:
   - elisa
   - nano
   - nano-system-highlighting
-base_groups_install:
+base_pkgs_install:
   - base-devel
   - fprint
-base_pkgs_install:
   - aspell
   - bat
   - bottom
@@ -27,7 +26,7 @@ base_pkgs_install:
   - jq
   - pax
   - sshpass
-  - wmctrl
+  - ripgrep
 base_plasma_kde_install:
   - plasma
 
