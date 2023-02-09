@@ -36,4 +36,4 @@ fi
 echo "sudo mount -t 9p -o trans=virtio,version=9p2000.L,msize=104857600 Public-dabrown ~/Public" > ~/mnt.sh
 chmod +x ~/mnt.sh
 
-ansible-pull -U https://github.com/dabrown645/ansible-master.git -K -k -i "$(uname -n)," --diff --checkout ${branch} ${@}
+ansible-pull -U https://github.com/dabrown645/ansible-master.git "$(uname -n)," --checkout ${branch} ${@}
