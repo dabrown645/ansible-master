@@ -12,12 +12,14 @@ if $(type -P apt > /dev/null) ; then
     (which ansible-pull >/dev/null \
         && which python3 >/dev/null \
         && which git >/dev/null) || (sudo apt install -y git python3 python3-psutil ansible openssh-server sshpass) \
-        && systemctl enable sshd
+        && systemctl is-available --quiet sshd \
+        || systemctl enable --now sshd
 elif $(type -P pacman > /dev/null) ; then
     sudo pacman -Syu --noconfirm
     (which ansible-pull >/dev/null \
-         && which git >/dev/null) || (sudo pacman --noconfirm -Syu ansible git sshpass) \
-        && systemctl enable --now sshd
+        && which git >/dev/null) || (sudo pacman --noconfirm -Syu ansible git sshpass) \
+        && systemctl is-available --quiet sshd \
+        || systemctl enable --now sshd
 elif $(type -P zypper >/dev/null); then
     (which ansible-pull && which git) || (sudo zypper install -y ansible git sshpass)
 else
