@@ -20,13 +20,13 @@
 - name: Remove unwanted packages from system
   ansible.builtin.package:
     name:
-      - "{{ base_pkgs_remove }}"
+      "{{ base_pkgs_remove }}"
     state: absent
 
 - name: Install base groups and packages
   ansible.builtin.package:
     name:
-      - "{{ base_pkgs_install }}"
+      "{{ base_pkgs_install }}"
     state: present
 
 - name: Install desttop specific packages
