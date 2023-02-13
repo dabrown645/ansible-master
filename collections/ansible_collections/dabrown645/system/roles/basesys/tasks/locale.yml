@@ -4,9 +4,63 @@
   community.general.timezone:
     name: "{{ system.timezone }}"
 
-- name: Ensure the locale system.locale exists
-  community.general.locale_gen:
-    name: "{{ item }}"
-    state: present
-  loop:
-     "{{ system.locale }}"
+- name: Debug
+  ansible.builtin.debug:
+    msg: "{{ system }}"
+
+- name: check if locale exists
+  ansible.builtin.shell: "locale -a | grep -i {{ system.locale | regex_replace('-', '') | quote }}"
+  register: found_locale
+  changed_when: false
+  failed_when: false
+
+- name: Debug
+  ansible.builtin.debug:
+    msg:
+      - "{{ found_locale.rc }}"
+      - "{{ ansible_check_mode }}"
+
+- name: create locale
+  ansible.builtin.command: "localedef -i {{ system.locale | regex_replace('(.*)\\..*', '\\1') | quote }} -f {{ system.locale | regex_replace('.*\\.(.*)', '\\1') | quote }} {{ system.locale | quote }}"
+  when: not ansible_check_mode and found_locale.rc != 0
+
+- name: check if language exists
+  ansible.builtin.shell: "locale -a | grep -i {{ system.language | regex_replace('-', '') | quote }}"
+  register: found_language
+  changed_when: false
+  failed_when: false
+
+- name: Debug
+  ansible.builtin.debug:
+    msg:
+      - "{{ found_language.rc }}"
+      - "{{ ansible_check_mode }}"
+
+- name: create language
+  ansible.builtin.command: "localedef -i {{ system.language | regex_replace('(.*)\\..*', '\\1') | quote }} -f {{ system.language | regex_replace('.*\\.(.*)', '\\1') | quote }} {{ system.language | quote }}"
+  when: not ansible_check_mode and found_language.rc != 0
+
+- name: Get current locale and language configuration
+  ansible.builtin.command: localectl status
+  register: locale_status
+  changed_when: false
+
+- name: Parse 'LANG' from current locale and language configuration
+  ansible.builtin.set_fact:
+    locale_lang: "{{ locale_status.stdout | regex_search('LANG=([^\n]+)', '\\1') | first }}"
+
+- name: Parse 'LANGUAGE' from current locale and language configuration
+  ansible.builtin.set_fact:
+    locale_language: "{{ locale_status.stdout | regex_search('LANGUAGE=([^\n]+)', '\\1') | default([locale_lang], true) | first }}"
+
+- name: Debug
+  ansible.builtin.debug:
+    msg:
+      - '{{ system.locale }}'
+      - '{{ system.language }}'
+      - "{{ locale_lang }}"
+      - "{{ locale_language }}"
+
+- name: Configure locale to '{{ system.locale }}' and language to '{{ system.language }}'
+  ansible.builtin.command: localectl set-locale LANG={{ system.locale }} LANGUAGE={{ system.language }}
+  changed_when: locale_lang != system.locale or locale_language != system.language
