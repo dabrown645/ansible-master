@@ -47,9 +47,8 @@ users:
 #   Option: "na" let the installation decide what to do
 ##
 system:
-  locale:
-    - en_US.UTF-8
-    - en_US
+  locale: en_US.UTF-8
+  language: en_US.UTF-8
   timezone: America/Los_Angeles
   processor: na
   graphics_card: na
