@@ -16,15 +16,18 @@ base_pkgs_install:
   - bat
   - bottom
   - btop
+  - btrfsmaintenance
   - btrfsprogs
   - btrfsprogs-udev-rules
-  - btrfsmaintenance
   - bzip2
   - bzip2-doc
+  - coreutils-doc
+  - coreutils-lang
   - cups
   - cups-client
-  - cups-filters
   - cups-config
+  - cups-filters
+  - dateutils
   - exa
   - exa-bash-completion
   - exa-fish-completion
@@ -33,18 +36,22 @@ base_pkgs_install:
   - gwenview5-lang
   - jq
     #- pax
-  - sshpass
+  - python3-pip
+  - python3-setuptools
   - ripgrep
   - ripgrep-bash-completion
   - ripgrep-fish-completion
   - ripgrep-zsh-completion
-  - dateutils
-  - coreutils-doc
-  - coreutils-lang
+  - sshpass
 base_plasma_kde_install:
   - patterns-kde-kde
 base_gnome_install:
   - patterns-gnome-gnome
+
+amd_microcode: ucode-amd
+intel_microcode: ucode-intel
+logindefs: /usr/etc/login.defs
+sudogrp: wheel
 
 #chrony_pkg_state: present
 #chrony_service_state: started

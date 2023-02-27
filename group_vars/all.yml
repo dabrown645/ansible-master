@@ -10,11 +10,11 @@
 # ==================
 ##
 users:
-  - username: dabrown
+  - name: dabrown
     comment: "David A Brown"
     shell: /usr/bin/bash
     group: dabrown
-    groups: [users, wheel]
+    groups: [users, "{{ sudogrp }}"]
     append: true
     creat_home: true
     state: present
@@ -23,10 +23,11 @@ users:
     visual_studio_code_extensions:
       - # extension 1
       - # extension 2
-  - username: ansible
+  - name: ansible
     comment: "Ansible user"
     group: ansible
-    groups: wheel
+    groups: ["{{ sudogrp }}"]
+    system: true
 
 ##
 # System Configuration
@@ -50,5 +51,5 @@ system:
   locale: en_US.UTF-8
   language: en_US.UTF-8
   timezone: America/Los_Angeles
-  processor: na
+  processor: intel
   graphics_card: na

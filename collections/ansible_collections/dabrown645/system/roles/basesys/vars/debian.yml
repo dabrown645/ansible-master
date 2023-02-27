@@ -39,6 +39,8 @@ base_pkgs_install:
   - gwenview
   - jq
   - pax
+  - python3-pip
+  - python3-setuptools
   - sshpass
   - ripgrep
 base_plasma_kde_install:
@@ -88,6 +90,11 @@ base_gnome_install:
   - gnome-user-docs
   - gnome-video-effects
   - gnome-weather
+
+amd_microcode: amd-microcode
+intel_microcode: intel-microcode
+logindefs: /etc/login.defs
+sudogrp: sudo
 
 #chrony_pkg_state: present
 #chrony_service_state: started
