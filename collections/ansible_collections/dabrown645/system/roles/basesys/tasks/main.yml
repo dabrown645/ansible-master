@@ -27,8 +27,17 @@
     name: "{{ base_pkgs_install }}"
     state: present
 
+- name: Install base pip packages
+  ansible.builtin.include_tasks: pippkgs.yml
+
 - name: Install desttop specific packages
   ansible.builtin.include_tasks: "{{ desktop_env }}.yml"
 
 - name: Configure locale
   ansible.builtin.include_tasks: locale.yml
+
+- name: Add users
+  ansible.builtin.include_tasks: configusers.yml
+
+- name: Install microcode if requested
+  ansible.builtin.include_tasks: microcode.yml

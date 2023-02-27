@@ -31,6 +31,11 @@ base_pkgs_install:
 base_plasma_kde_install:
   - plasma
 
+amd_microcode: amd-code
+intel_microcode: intel-ucode
+logindefs: /etc/login.defs
+sudogrp: wheel
+
 #chrony_pkg_state: present
 #chrony_service_state: started
 #chrony_service_enabled: true

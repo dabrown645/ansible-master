@@ -1,0 +1,9 @@
+---
+- name: System level pip packages
+  become: true
+  ansible.builtin.pip:
+    state: present
+    name:
+      - black
+      - pipenv
+      - pynvim
