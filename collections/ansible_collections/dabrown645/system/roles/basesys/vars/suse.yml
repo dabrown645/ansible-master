@@ -27,6 +27,7 @@ base_pkgs_install:
   - cups-client
   - cups-config
   - cups-filters
+  - curl
   - dateutils
   - exa
   - exa-bash-completion
@@ -35,6 +36,10 @@ base_pkgs_install:
   - gwenview5
   - gwenview5-lang
   - jq
+  - lsof
+  - ncdu
+  - neofetch
+  - nmap
     #- pax
   - python3-pip
   - python3-setuptools
@@ -42,7 +47,9 @@ base_pkgs_install:
   - ripgrep-bash-completion
   - ripgrep-fish-completion
   - ripgrep-zsh-completion
+  - rsync
   - sshpass
+  - traceroute
 base_plasma_kde_install:
   - patterns-kde-kde
 base_gnome_install:

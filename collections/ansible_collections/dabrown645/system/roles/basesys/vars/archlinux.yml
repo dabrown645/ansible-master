@@ -21,14 +21,23 @@ base_pkgs_install:
   - cups-filters
   - cups-pdf
   - cups-pk-helper
+  - curl
   - dolphin-plugins
   - exa
   - gwenview
   - jq
+  - lsof
+  - ncdu
+  - neofetch
+  - net-tools
+  - nmap
   - pax
   - python-pip
   - python-setuptools
+  - rsync
   - sshpass
+  - traceroute
+  - wget
   - wmctrl
 base_plasma_kde_install:
   - plasma
