@@ -11,7 +11,7 @@ base_pkgs_install:
   - aspell
   - aspell-en
   - bat
-    #  - bottom
+  #  - bottom
   - btop
   - btrfs-compsize
   - btrfs-heatmap
@@ -27,22 +27,31 @@ base_pkgs_install:
   - cups-common
   - cups-core-drivers
   - cups-daemon
-  - cups-filters-core-drivers
   - cups-filters
+  - cups-filters-core-drivers
   - cups-ipp-utils
   - cups-pk-helper
   - cups-ppdc
   - cups-server-common
   - cups-tea4cups
   - cups-x2go
+  - curl
   - exa
   - gwenview
   - jq
+  - lsof
+  - ncdu
+  - neofetch
+  - net-tools
+  - nmap
   - pax
   - python3-pip
   - python3-setuptools
-  - sshpass
   - ripgrep
+  - rsync
+  - sshpass
+  - traceroute
+  - wget
 base_plasma_kde_install:
   - plasma
 base_gnome_install:
