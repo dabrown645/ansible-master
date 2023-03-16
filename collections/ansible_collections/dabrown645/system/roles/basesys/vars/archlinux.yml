@@ -5,7 +5,7 @@
 base_pkgs_remove:
   - elisa
   - nano
-  - nano-system-highlighting
+  - nano-syntax-highlighting
 base_groups_install:
   - base-devel
   - fprint
