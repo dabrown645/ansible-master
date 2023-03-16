@@ -1,0 +1,7 @@
+---
+pull_groups:
+  - laptop
+  - onlymanjaro
+
+
+desktop_env: kde
