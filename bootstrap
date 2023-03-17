@@ -26,8 +26,8 @@ else
 fi
 
 # Create ansible log directory
-# NOTE: Ensure it i the same as in the log path in Ansible.cfg
-mkdir -p /var/log
+# NOTE: Ensure it is the same as in the log path in Ansible.cfg
+#  mkdir -p /var/log
 
 branch=${1:-main}
 if  [[ ${#} -ge 1 ]] ; then
