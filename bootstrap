@@ -35,6 +35,7 @@ if  [[ ${#} -ge 1 ]] ; then
 fi
 
 echo "sudo mount -t 9p -o trans=virtio,version=9p2000.L,msize=104857600 Public-dabrown ~/Public" > ~/mnt.sh
+echo "cd ~/Public/ansible-master" >> ~/mnt.sh
 chmod +x ~/mnt.sh
 
 ansible-pull -U https://github.com/dabrown645/ansible-master.git --limit "$(uname -n)," --checkout ${branch} ${@}

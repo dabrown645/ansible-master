@@ -30,5 +30,9 @@
     system: "{{ user.system | default(false) }}"
     createhome: "{{ user.createhome | default(true) }}"
     home: "{{ user.home | default( '/home/' + user.name) }}"
-      #expires: 1672563600       # expired on 2023-01-01
-    password:  "$y$j9T$vUEPml1poy563YDbUg7P9/$2Jp6VEy9hrYJeliyx6g7FAG3xeRNqQiAHOG2j.MGKY9"    # initt57931
+    password:  "{{ user.password | default(omit) }}"
+
+      # sddm doesn't support changing password
+      #- name: Force change password on login
+      #  ansible.builtinn.shell:
+      #    cmd: chage -d 0 "{{ user.name }}"
