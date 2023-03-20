@@ -13,7 +13,7 @@ users:
   #- name: model
   #  name: "{{ user.name }}"
   #  comment: "{{ user.comment | default('Unknown User') }}"
-  #  shell: "{{ user.shell | default('/usr/bin/bash') }}"
+  #  shell: "{{ user.shell | default('/bin/bash') }}"
   #  group: "{{ user.group }}"
   #  groups: "{{ user.groups }}"
   #  append: "{{ user.append | default(true) }}"

@@ -23,7 +23,7 @@
   ansible.builtin.user:
     name: "{{ user.name }}"
     comment: "{{ user.comment | default('Unknown User') }}"
-    shell: "{{ user.shell | default('/usr/bin/bash') }}"
+    shell: "{{ user.shell | default(omit') }}"
     group: "{{ user.group }}"
     groups: "{{ user.groups }}"
     append: "{{ user.append | default(true) }}"
