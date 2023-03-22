@@ -1,8 +1,4 @@
 ---
-- name: Debug
-  ansible.builtin.debug:
-    msg: "I am debian upgrade"
-
 - name: Update APT Cache.
   ansible.builtin.apt:
     update_cache: true

@@ -1,11 +1,4 @@
 ---
-
-#- name: Update SYS_UID_MAX
-#  ansible.builtin.lineinfile:
-#    path: "{{ logindefs }}"
-#    regexp: "^#?SYS_UID_MAX.*"
-#    line: "SYS_UID_MAX      1999"
-
 - name: Set ENCRYPT_METHOD SHA512
   ansible.builtin.lineinfile:
     path: "{{ logindefs }}"

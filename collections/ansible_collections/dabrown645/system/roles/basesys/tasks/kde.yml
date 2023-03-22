@@ -1,5 +1,5 @@
 ---
-- name: Install base plasma-kde groups packages 
+- name: Install base plasma-kde groups packages
   ansible.builtin.package:
     name: "{{ item }}"
     state: present

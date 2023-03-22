@@ -1,12 +1,6 @@
 ---
 - name: Install microcode if requested
   block:
-    - name: Debug
-      ansible.builtin.debug:
-        msg:
-          - "{{ amd_microcode }}"
-          - "{{ intel_microcode }}"
-
     - name: Install AMD micro code
       ansible.builtin.package:
         name: "{{ amd_microcode }}"
@@ -15,6 +9,6 @@
 
     - name: Install Intel micro code
       ansible.builtin.package:
-        name: "{{ intel_microcode  }}"
+        name: "{{ intel_microcode }}"
         state: present
       when: system.processor == 'intel'

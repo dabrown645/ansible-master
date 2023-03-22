@@ -1,9 +1,4 @@
 ---
-- name: Debuging
-  ansible.builtin.debug:
-    msg:
-      - "{{ user }}"
-
 - name: Ensure user.group exists
   ansible.builtin.group:
     name: "{{ user.group }}"
@@ -23,16 +18,11 @@
   ansible.builtin.user:
     name: "{{ user.name }}"
     comment: "{{ user.comment | default('Unknown User') }}"
-    shell: "{{ user.shell | default(omit') }}"
+    shell: "{{ user.shell | default(omit) }}"
     group: "{{ user.group }}"
     groups: "{{ user.groups }}"
     append: "{{ user.append | default(true) }}"
     system: "{{ user.system | default(false) }}"
     createhome: "{{ user.createhome | default(true) }}"
-    home: "{{ user.home | default( '/home/' + user.name) }}"
-    password:  "{{ user.password | default(omit) }}"
-
-      # sddm doesn't support changing password
-      #- name: Force change password on login
-      #  ansible.builtinn.shell:
-      #    cmd: chage -d 0 "{{ user.name }}"
+    home: "{{ user.home | default('/home/' + user.name) }}"
+    password: '"{{ user.password | default(omit) }}"'
