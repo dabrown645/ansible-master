@@ -6,41 +6,6 @@
 # them in host_vars/<machine_name>.yml
 
 ##
-# User Configuration
-# ==================
-##
-users:
-  #- name: model
-  #  name: "{{ user.name }}"
-  #  comment: "{{ user.comment | default('Unknown User') }}"
-  #  shell: "{{ user.shell | default('/bin/bash') }}"
-  #  group: "{{ user.group }}"
-  #  groups: "{{ user.groups }}"
-  #  append: "{{ user.append | default(true) }}"
-  #  system: "{{ user.system | default(false) }}"
-  #  createhome: "{{ user.createhome | default(true) }}"
-  #  home: "{{ user.home | default( '/home/' + user.name) }}"
-  #  password:  "$y$j9T$vUEPml1poy563YDbUg7P9/$2Jp6VEy9hrYJeliyx6g7FAG3xeRNqQiAHOG2j.MGKY9"    # initt57931
-  - name: dabrown
-    comment: "David A Brown"
-    shell: /bin/bash
-    group: dabrown
-    groups: [users, "{{ sudogrp }}"]
-    append: true
-    creat_home: true
-    state: present
-    system: false
-    password: '$6$9rUF4Ab8J/Zfqnor$9yabEIAtxYK3.bJ/wC6mXehXX9gim5km.Y7jQKijSlDDQdGMlS.fRFckeB.xBJsbikClj.9kfuEUe7kbKgJu/1'
-    visual_studio_code_extensions:
-      - # extension 1
-      - # extension 2
-  - name: ansible
-    comment: "Ansible user"
-    group: ansible
-    groups: ["{{ sudogrp }}"]
-    system: true
-
-##
 # System Configuration
 # ====================
 # locale:

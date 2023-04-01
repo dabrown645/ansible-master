@@ -5,6 +5,11 @@
   become: true
   gather_facts: true
 
+  pre_tasks:
+    - name: Include myvault
+      ansible.builtin.include_vars:
+        file: ./myusers.yml
+
   roles:
     - role: dabrown645.system.ansible_pull
       ansible_pull_url: https://github.com/dabown645/ansible-master

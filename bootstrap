@@ -34,8 +34,17 @@ if  [[ ${#} -ge 1 ]] ; then
     shift
 fi
 
-echo "sudo mount -t 9p -o trans=virtio,version=9p2000.L,msize=104857600 Public-dabrown ~/Public" > ~/mnt.sh
-echo "cd ~/Public/ansible-master" >> ~/mnt.sh
+echo "#!/usr/bin/env bash" > ~/mnt.sh
+echo "if $(mount | grep -iq 'Public') ; then" >> ~/mnt.sh
+echo "    :" >> ~/mnt.sh
+echo "else" >> ~/.mnt.sh
+echo "    sudo mount -t 9p -o trans=virtio,version=9p2000.L,msize=104857600 Public-dabrown ~/Public" >> ~/mnt.sh
+echo "    cd ~/Public/ansible-master" >> ~/mnt.sh
+echo "fi" >> ~/mnt.sh
+
 chmod +x ~/mnt.sh
 
-ansible-pull -U https://github.com/dabrown645/ansible-master.git --limit "$(uname -n)," --checkout ${branch} ${@}
+ansible-pull -U https://github.com/dabrown645/ansible-master.git \
+    --ask-vault-password \
+    --limit "$(uname -n)," \
+    --checkout ${branch} ${@}
