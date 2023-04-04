@@ -26,4 +26,4 @@
     createhome: "{{ user.createhome | default(true) }}"
     home: "{{ user.home | default('/home/' + user.name) }}"
     password: "{{ user.password | default(omit) | password_hash}}"
-    update_passwd: on_create
+    update_password: on_create

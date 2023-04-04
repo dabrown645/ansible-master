@@ -45,6 +45,6 @@ echo "fi" >> ~/mnt.sh
 chmod +x ~/mnt.sh
 
 ansible-pull -U https://github.com/dabrown645/ansible-master.git \
-    --ask-vault-password \
+    --vault-password-file /etc/anspass \
     --limit "$(uname -n)," \
     --checkout ${branch} ${@}
