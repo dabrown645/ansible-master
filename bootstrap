@@ -6,23 +6,26 @@ set -euo pipefail
 URL="https://github.com/dabrown645/ansible-master.git"
 
 # Install Ansible (ansible-pull and Git
-if $(type -P apt > /dev/null) ; then
-    (which ansible-pull >/dev/null \
-        && which python3 >/dev/null \
-        && which git >/dev/null) || (sudo apt install -y git python3 python3-psutil ansible openssh-server sshpass) \
-        && systemctl is-active --quiet sshd \
-        || systemctl enable --now sshd
-elif $(type -P pacman > /dev/null) ; then
-    (which ansible-pull >/dev/null \
-        && which git >/dev/null) || (sudo pacman --noconfirm -Syu ansible git sshpass) \
-        && systemctl is-active --quiet sshd \
-        || systemctl enable --now sshd
-elif $(type -P zypper >/dev/null); then
-    (which ansible-pull && which git) || (sudo zypper install -y ansible git sshpass) \
-        && systemctl is-active --quiet sshd \
-        || systemctl enable --now sshd
+if type -P apt >/dev/null; then
+  # shellcheck disable=2015
+  (which ansible-pull >/dev/null &&
+    which python3 >/dev/null &&
+    which git >/dev/null) || (sudo apt install -y git python3 python3-psutil ansible openssh-server sshpass) &&
+    systemctl is-active --quiet sshd ||
+    systemctl enable --now sshd
+elif type -P pacman >/dev/null; then
+  # shellcheck disable=2015
+  (which ansible-pull >/dev/null &&
+    which git >/dev/null) || (sudo pacman --noconfirm -Syu ansible git sshpass) &&
+    systemctl is-active --quiet sshd ||
+    systemctl enable --now sshd
+elif type -P zypper >/dev/null; then
+  # shellcheck disable=2015
+  (which ansible-pull && which git) || (sudo zypper install -y ansible git sshpass) &&
+    systemctl is-active --quiet sshd ||
+    systemctl enable --now sshd
 else
-    echo "OS type not supported"
+  echo "OS type not supported"
 fi
 
 # Create ansible log directory
@@ -30,21 +33,24 @@ fi
 #  mkdir -p /var/log
 
 branch=${1:-main}
-if  [[ ${#} -ge 1 ]] ; then
-    shift
+if [[ ${#} -ge 1 ]]; then
+  shift
 fi
 
-echo "#!/usr/bin/env bash" > ~/mnt.sh
-echo "if $(mount | grep -iq 'Public') ; then" >> ~/mnt.sh
-echo "    :" >> ~/mnt.sh
-echo "else" >> ~/.mnt.sh
-echo "    sudo mount -t 9p -o trans=virtio,version=9p2000.L,msize=104857600 Public-dabrown ~/Public" >> ~/mnt.sh
-echo "    cd ~/Public/ansible-master" >> ~/mnt.sh
-echo "fi" >> ~/mnt.sh
+# shellcheck disable=2016
+{
+  echo '#!/usr/bin/env bash'
+  echo 'if mount | grep -iq "Public" ; then'
+  echo '  :'
+  echo 'else'
+  echo '  sudo mount -t 9p -o trans=virtio,version=9p2000.L,msize=104857600 Public-dabrown ~/Public'
+  echo '  cd ~/Public/ansible-master || exit'
+  echo 'fi'
+} >~/mnt.sh
 
 chmod +x ~/mnt.sh
 
-ansible-pull -U https://github.com/dabrown645/ansible-master.git \
-    --vault-password-file /etc/anspass \
-    --limit "$(uname -n)," \
-    --checkout ${branch} ${@}
+ansible-pull -U ${URL} \
+  --vault-password-file /etc/anspass \
+  --limit "$(uname -n)," \
+  --checkout "${branch}" "${@}"
