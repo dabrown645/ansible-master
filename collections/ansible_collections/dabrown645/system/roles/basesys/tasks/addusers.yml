@@ -1,9 +1,4 @@
 ---
-- name: Debuging
-  ansible.builtin.debug:
-    msg:
-      - "{{ user }}"
-
 - name: Ensure user.group exists
   ansible.builtin.group:
     name: "{{ user.group }}"
@@ -23,12 +18,12 @@
   ansible.builtin.user:
     name: "{{ user.name }}"
     comment: "{{ user.comment | default('Unknown User') }}"
-    shell: "{{ user.shell | default('/usr/bin/bash') }}"
+    shell: "{{ user.shell | default(omit) }}"
     group: "{{ user.group }}"
     groups: "{{ user.groups }}"
     append: "{{ user.append | default(true) }}"
     system: "{{ user.system | default(false) }}"
     createhome: "{{ user.createhome | default(true) }}"
-    home: "{{ user.home | default( '/home/' + user.name) }}"
-      #expires: 1672563600       # expired on 2023-01-01
-    password:  "$y$j9T$vUEPml1poy563YDbUg7P9/$2Jp6VEy9hrYJeliyx6g7FAG3xeRNqQiAHOG2j.MGKY9"    # initt57931
+    home: "{{ user.home | default('/home/' + user.name) }}"
+    password: "{{ user.password | default(omit) | password_hash}}"
+    update_password: on_create

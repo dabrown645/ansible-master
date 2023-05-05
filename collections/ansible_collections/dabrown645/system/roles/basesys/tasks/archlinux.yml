@@ -1,9 +1,5 @@
 ---
 # Archlinux specific configuration
-- name: Debug info
-  ansible.builtin.debug:
-    var: base_groups_install
-
 - name: Remove unwanted packages from system
   ansible.builtin.package:
     name: "{{ item }}"
@@ -18,10 +14,6 @@
   with_items:
     - "{{ base_groups_install }}"
     - "{{ base_pkgs_install }}"
-
-- name: Debug info when
-  ansible.builtin.debug:
-    var: ansible_env
 
 - name: Install desttop specific packages
   ansible.builtin.include_tasks: "{{ desktop_env }}.yml"

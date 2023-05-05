@@ -3,6 +3,9 @@
   become: true
   ansible.builtin.template:
     dest: /etc/systemd/system
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
     src: "{{ item }}"
   loop:
     - ansible-pull.service

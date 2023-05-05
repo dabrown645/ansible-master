@@ -1,5 +1,5 @@
 ---
-- name: Install base gnome groups and packages 
+- name: Install base gnome groups and packages
   ansible.builtin.package:
     name:
       "{{ base_gnome_install }}"

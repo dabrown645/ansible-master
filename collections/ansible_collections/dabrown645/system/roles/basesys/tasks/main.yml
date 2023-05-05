@@ -1,11 +1,4 @@
 ---
-- name: Debug info
-  ansible.builtin.debug:
-    msg:
-      - "{{ ansible_os_family | lower }}"
-      - "{{ ansible_distribution | replace(' ', '_') | lower }}"
-      - "{{ ansible_distribution_version | lower }}"
-
 - name: Load a variable file based on OS type info
   ansible.builtin.include_vars: "{{ lookup('ansible.builtin.first_found', params) }}"
   vars:
